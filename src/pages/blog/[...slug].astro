@@ -15,7 +15,7 @@ const { Content } = await render(post);
 const { title, description, pubDate, updatedDate, tags, cover, coverAlt, coverCaption, coverCaptionUrl, originalUrl } = post.data;
 ---
 
-<BaseLayout title={`${title} · Affan Ali`} description={description}>
+<BaseLayout title={`${title} · Affan Ali`} description={description} ogType="article">
 	<main class="page">
 		<article>
 			<header>

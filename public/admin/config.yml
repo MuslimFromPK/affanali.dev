@@ -110,4 +110,6 @@ collections:
           - { name: email, label: Contact email, widget: string }
           - { name: linkedin, label: LinkedIn URL, widget: string }
           - { name: patchstack, label: Patchstack profile URL, widget: string }
+          - { name: github, label: GitHub URL, widget: string }
+          - { name: hackerone, label: HackerOne URL, widget: string }
           - { name: description, label: Default SEO description, widget: text }

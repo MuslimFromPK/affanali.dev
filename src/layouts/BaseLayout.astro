@@ -6,10 +6,28 @@ import site from '../data/site.json';
 interface Props {
 	title: string;
 	description?: string;
+	/** Page type for Open Graph; posts pass "article". */
+	ogType?: 'website' | 'article';
+	/** Emit the Person JSON-LD (homepage only). */
+	person?: boolean;
 }
 
-const { title, description = site.description } = Astro.props;
+const { title, description = site.description, ogType = 'website', person = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og.png', Astro.site);
+
+// Structured data linking the name to the handle and all profiles.
+const personSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: site.name,
+	alternateName: site.handle,
+	jobTitle: site.role,
+	url: Astro.site?.href,
+	email: `mailto:${site.email}`,
+	nationality: 'Pakistani',
+	sameAs: [site.github, site.linkedin, site.hackerone, site.patchstack].filter(Boolean),
+};
 ---
 
 <html lang="en">
@@ -25,6 +43,24 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content={ogType} />
+		<meta property="og:site_name" content="affanali.dev" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+
+		{person && <script type="application/ld+json" is:inline set:html={JSON.stringify(personSchema)} />}
+
 		<!-- 100% privacy-first analytics -->
 		<script is:inline async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 	</head>

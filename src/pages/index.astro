@@ -9,7 +9,7 @@ const { Content } = await render(home);
 const { title, description, knownAs, servicesHeading, services } = home.data;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} person={true}>
 	<main>
 		<header>
 			<p class="mono prompt">$ whoami</p>

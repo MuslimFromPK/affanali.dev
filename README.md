@@ -61,10 +61,10 @@ To make a new page editable, add its content file to `src/content/` and a matchi
     https://patchstack.com/database/Wordpress/Plugin/swiftxr-3darvr-viewer/vulnerability/wordpress-swiftxr-3d-ar-vr-viewer-plugin-1-0-7-cross-site-request-forgery-csrf-vulnerability
 - [x] **Phase 4: Blog.** _Posts, tags, reading time, Shiki highlighting, RSS feed (`/rss.xml`), CMS editing. 3 Medium posts migrated._ Content collection for Markdown/MDX write-ups with tags, RSS feed (`@astrojs/rss`), reading time,
       syntax highlighting (Shiki, built in).
-- [ ] **Phase 5: Links/contact.** LinkedIn (linkedin.com/in/affanalicyber), GitHub (github.com/MuslimFromPK),
+- [x] **Phase 5: Links/contact.** _Email, GitHub, LinkedIn, HackerOne, Patchstack in the footer (editable in Site settings)._ LinkedIn (linkedin.com/in/affanalicyber), GitHub (github.com/MuslimFromPK),
       HackerOne (hackerone.com/muslimfrompk), Medium (muslimfrompk.medium.com),
       Patchstack profile (https://patchstack.com/database/researchers/ae43ab4a-8367-4d20-a821-a83dab7501e0), contact email (affanalimuslim@gmail.com).
-- [ ] **SEO.** Meta tags, Open Graph image, sitemap (`@astrojs/sitemap`), and JSON-LD `Person` schema
+- [x] **SEO.** _Meta + Open Graph/Twitter tags, /og.png share image, sitemap, robots.txt, Person JSON-LD (name↔muslimfrompk + sameAs)._ Meta tags, Open Graph image, sitemap (`@astrojs/sitemap`), and JSON-LD `Person` schema
       (`name: "Affan Ali"`, `alternateName: "muslimfrompk"`, `sameAs`: all profiles above).
 
 ## Rules for content
