@@ -67,6 +67,35 @@ collections:
       - { name: draft, label: Draft (hidden from the live site), widget: boolean, default: false, required: false }
       - { name: body, label: Post, widget: markdown }
 
+  - name: research
+    label: Research
+    files:
+      - name: cves
+        label: CVEs
+        file: src/data/research.json
+        fields:
+          - name: entries
+            label: CVEs (newest first)
+            label_singular: CVE
+            widget: list
+            summary: '{{fields.id}}: {{fields.title}}'
+            fields:
+              - { name: id, label: CVE ID, widget: string, hint: 'e.g. CVE-2025-39404' }
+              - { name: title, label: Short title, widget: string }
+              - { name: product, label: Product, widget: string }
+              - { name: productUrl, label: Product URL, widget: string, required: false }
+              - { name: platform, label: Platform, widget: string, default: WordPress plugin }
+              - { name: affected, label: Affected versions, widget: string, hint: 'as in the CVE record, e.g. <= 3.3.73' }
+              - { name: fixedIn, label: Fixed in, widget: string, required: false, hint: 'only if the record or vendor states it' }
+              - { name: weakness, label: Weakness (CWE), widget: string }
+              - { name: cvss, label: CVSS score, widget: number, value_type: float, min: 0, max: 10, step: 0.1 }
+              - { name: severity, label: Severity, widget: select, options: [None, Low, Medium, High, Critical] }
+              - { name: vector, label: CVSS vector, widget: string, required: false }
+              - { name: published, label: CVE published, widget: datetime, time_format: false, date_format: 'YYYY-MM-DD', format: 'YYYY-MM-DD' }
+              - { name: reach, label: Reach, widget: string, required: false, hint: 'only verifiable figures, e.g. 100,000+ active installs' }
+              - { name: creditedVia, label: Credited via, widget: string, default: Patchstack }
+              - { name: advisoryUrl, label: Official advisory URL, widget: string }
+
   - name: settings
     label: Site settings
     files:
@@ -80,4 +109,5 @@ collections:
           - { name: location, label: Location (keep to country only), widget: string }
           - { name: email, label: Contact email, widget: string }
           - { name: linkedin, label: LinkedIn URL, widget: string }
+          - { name: patchstack, label: Patchstack profile URL, widget: string }
           - { name: description, label: Default SEO description, widget: text }

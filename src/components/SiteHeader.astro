@@ -2,6 +2,7 @@
 const path = Astro.url.pathname;
 const links = [
 	{ href: '/', label: 'home' },
+	{ href: '/research/', label: 'research' },
 	{ href: '/blog/', label: 'blog' },
 ];
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));

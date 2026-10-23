@@ -23,7 +23,8 @@ src/layouts/                   Page shells (<head>, global styles)
 src/content/pages/             Editable page content (home.md = homepage text)
 src/content/blog/              Markdown/MDX blog posts (Phase 4)
 src/content.config.ts          Content collection schemas
-src/data/site.json             Name, handle, role, contact email, default description
+src/data/site.json             Name, handle, role, contact email, profile links, default description
+src/data/research.json         CVE list shown on /research
 astro.config.mjs               Astro config (site URL, integrations)
 ```
 
@@ -53,7 +54,7 @@ To make a new page editable, add its content file to `src/content/` and a matchi
 - [x] **Phase 1: Project + hosting.** Astro scaffold, dark placeholder homepage, Pages deploy workflow, custom domain.
 - [x] **Phase 2: Homepage.** Short intro, what I do (AI red teaming, web/API pentesting, bug bounty), and the line
       "Affan Ali, known online as muslimfrompk".
-- [ ] **Phase 3: Research page.** List CVEs exactly as below, each linked to its official advisory. No inflated severity or reach.
+- [x] **Phase 3: Research page.** Data in `src/data/research.json` (editable in /admin → Research). List CVEs exactly as below, each linked to its official advisory. No inflated severity or reach.
   - CVE-2025-39404: Open Redirect in Sassy Social Share WordPress plugin (<= 3.3.73), CVSS 4.7, 100,000+ active installs, credited via Patchstack.
     https://patchstack.com/database/Wordpress/Plugin/sassy-social-share/vulnerability/wordpress-sassy-social-share-plugin-3-3-73-open-redirection-vulnerability
   - CVE-2025-32248: CSRF in SwiftXR (3D/AR/VR) Viewer WordPress plugin (<= 1.0.7), CVSS 5.4, credited via Patchstack.
@@ -62,7 +63,7 @@ To make a new page editable, add its content file to `src/content/` and a matchi
       syntax highlighting (Shiki, built in).
 - [ ] **Phase 5: Links/contact.** LinkedIn (linkedin.com/in/affanalicyber), GitHub (github.com/MuslimFromPK),
       HackerOne (hackerone.com/muslimfrompk), Medium (muslimfrompk.medium.com),
-      Patchstack profile (TODO: URL), contact email (affanalimuslim@gmail.com).
+      Patchstack profile (https://patchstack.com/database/researchers/ae43ab4a-8367-4d20-a821-a83dab7501e0), contact email (affanalimuslim@gmail.com).
 - [ ] **SEO.** Meta tags, Open Graph image, sitemap (`@astrojs/sitemap`), and JSON-LD `Person` schema
       (`name: "Affan Ali"`, `alternateName: "muslimfrompk"`, `sameAs`: all profiles above).
 

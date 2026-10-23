@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate } from '../../lib/blog';
+import site from '../../data/site.json';
+
+const cves = (await getCollection('research')).sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+---
+
+<BaseLayout
+	title="Research · Affan Ali (muslimfrompk)"
+	description="CVEs and security advisories credited to Affan Ali (muslimfrompk)."
+>
+	<main class="page">
+		<p class="mono prompt">$ cat ~/research/cves</p>
+		<h1>Research</h1>
+		<p class="lead">
+			Vulnerabilities I found and disclosed that were assigned CVEs. Details below match the official records.
+			Also listed on my <a href={site.patchstack} rel="me noopener">Patchstack researcher profile</a>.
+		</p>
+
+		<ol class="cves">
+			{cves.map(({ data: c }) => (
+				<li>
+					<article>
+						<header>
+							<p class="id mono">{c.id}</p>
+							<h2>{c.title}</h2>
+						</header>
+						<p class="score">
+							<span class={`badge sev-${c.severity.toLowerCase()}`}>CVSS {c.cvss.toFixed(1)} · {c.severity}</span>
+						</p>
+						<dl>
+							<dt>Product</dt>
+							<dd>
+								{c.productUrl ? <a href={c.productUrl} rel="noopener">{c.product}</a> : c.product} ({c.platform})
+							</dd>
+							<dt>Affected</dt>
+							<dd class="mono">{c.affected}{c.fixedIn && <span class="muted"> · fixed in {c.fixedIn}</span>}</dd>
+							<dt>Weakness</dt>
+							<dd>{c.weakness}</dd>
+							{c.vector && (<><dt>Vector</dt><dd class="mono vector">{c.vector}</dd></>)}
+							{c.reach && (<><dt>Reach</dt><dd>{c.reach}</dd></>)}
+							<dt>Published</dt>
+							<dd><time datetime={c.published.toISOString().slice(0, 10)}>{formatDate(c.published)}</time> · credited via {c.creditedVia}</dd>
+						</dl>
+						<p class="links mono">
+							<a href={c.advisoryUrl} rel="noopener">Advisory ↗</a>
+							<a href={`https://www.cve.org/CVERecord?id=${c.id}`} rel="noopener">CVE record ↗</a>
+						</p>
+					</article>
+				</li>
+			))}
+		</ol>
+	</main>
+</BaseLayout>
+
+<style>
+	.cves { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.25rem; }
+	article {
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: 0.5rem;
+		padding: 1.25rem 1.4rem;
+	}
+	.id { margin: 0; color: var(--accent); font-size: 0.9rem; }
+	h2 { font-size: 1.2rem; line-height: 1.35; margin: 0.2rem 0 0.75rem; }
+	.score { margin: 0 0 1rem; }
+	.badge {
+		display: inline-block;
+		font-size: 0.8rem;
+		font-weight: 600;
+		padding: 0.15rem 0.6rem;
+		border-radius: 999px;
+		border: 1px solid currentColor;
+	}
+	.sev-low { color: #8bd5ff; }
+	.sev-medium { color: #f0b429; }
+	.sev-high { color: #ff8a4c; }
+	.sev-critical { color: #ff5c5c; }
+	.sev-none { color: var(--muted); }
+	dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1rem; margin: 0; font-size: 0.95rem; }
+	dt { color: var(--muted); }
+	dd { margin: 0; min-width: 0; }
+	.vector { font-size: 0.8rem; overflow-wrap: anywhere; }
+	.muted { color: var(--muted); }
+	.links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin: 1.1rem 0 0; font-size: 0.9rem; }
+	@media (max-width: 30rem) {
+		dl { grid-template-columns: 1fr; }
+		dt { margin-top: 0.4rem; }
+	}
+</style>

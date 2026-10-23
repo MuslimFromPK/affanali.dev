@@ -1,0 +1,36 @@
+{
+  "entries": [
+    {
+      "id": "CVE-2025-39404",
+      "title": "Open Redirect in Sassy Social Share",
+      "product": "Sassy Social Share",
+      "productUrl": "https://wordpress.org/plugins/sassy-social-share/",
+      "platform": "WordPress plugin",
+      "affected": "<= 3.3.73",
+      "fixedIn": "3.3.74",
+      "weakness": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+      "cvss": 4.7,
+      "severity": "Medium",
+      "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N",
+      "published": "2025-04-24",
+      "reach": "100,000+ active installs",
+      "creditedVia": "Patchstack",
+      "advisoryUrl": "https://patchstack.com/database/Wordpress/Plugin/sassy-social-share/vulnerability/wordpress-sassy-social-share-plugin-3-3-73-open-redirection-vulnerability"
+    },
+    {
+      "id": "CVE-2025-32248",
+      "title": "CSRF in SwiftXR (3D/AR/VR) Viewer",
+      "product": "SwiftXR (3D/AR/VR) Viewer",
+      "productUrl": "https://wordpress.org/plugins/swiftxr-3darvr-viewer/",
+      "platform": "WordPress plugin",
+      "affected": "<= 1.0.7",
+      "weakness": "CWE-352: Cross-Site Request Forgery (CSRF)",
+      "cvss": 5.4,
+      "severity": "Medium",
+      "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:L",
+      "published": "2025-04-04",
+      "creditedVia": "Patchstack",
+      "advisoryUrl": "https://patchstack.com/database/Wordpress/Plugin/swiftxr-3darvr-viewer/vulnerability/wordpress-swiftxr-3d-ar-vr-viewer-plugin-1-0-7-cross-site-request-forgery-csrf-vulnerability"
+    }
+  ]
+}

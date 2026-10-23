@@ -1,5 +1,5 @@
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 // Editable page content (also edited through the CMS at /admin).
@@ -37,4 +37,26 @@ const blog = defineCollection({
 		}),
 });
 
-export const collections = { pages, blog };
+// CVEs / advisories, listed on /research. Values must match the official CVE record.
+const research = defineCollection({
+	loader: file('src/data/research.json', { parser: (text) => JSON.parse(text).entries }),
+	schema: z.object({
+		id: z.string().regex(/^CVE-\d{4}-\d{4,}$/),
+		title: z.string(),
+		product: z.string(),
+		productUrl: optionalUrl,
+		platform: z.string(),
+		affected: z.string(),
+		fixedIn: z.string().optional(),
+		weakness: z.string(),
+		cvss: z.number().min(0).max(10),
+		severity: z.enum(['None', 'Low', 'Medium', 'High', 'Critical']),
+		vector: z.string().optional(),
+		published: z.coerce.date(),
+		reach: z.string().optional(),
+		creditedVia: z.string(),
+		advisoryUrl: z.url(),
+	}),
+});
+
+export const collections = { pages, blog, research };
