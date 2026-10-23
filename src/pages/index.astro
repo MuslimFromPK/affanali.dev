@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Affan Ali (muslimfrompk) — AI Red Teamer & Security Researcher">
+	<main>
+		<p class="mono prompt">$ whoami</p>
+		<h1>Affan Ali <span class="handle">(muslimfrompk)</span></h1>
+		<p class="role">AI Red Teamer &amp; Security Researcher</p>
+		<p class="mono status"><span class="dot" aria-hidden="true"></span>Site under construction.</p>
+	</main>
+</BaseLayout>
+
+<style>
+	main {
+		min-height: 100vh;
+		min-height: 100dvh;
+		max-width: 44rem;
+		margin: 0 auto;
+		padding: 2rem 1.25rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.prompt { color: var(--accent); margin: 0 0 0.5rem; }
+	h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.15; margin: 0; }
+	.handle { color: var(--muted); font-weight: 400; }
+	.role { font-size: 1.25rem; margin: 0.5rem 0 2rem; }
+	.status { color: var(--muted); margin: 0; display: flex; align-items: center; gap: 0.6rem; }
+	.dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: #f0b429; }
+</style>
