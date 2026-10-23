@@ -1,10 +1,12 @@
 ---
+import site from '../data/site.json';
+
 interface Props {
 	title: string;
 	description?: string;
 }
 
-const { title, description = 'Affan Ali (muslimfrompk), AI red teamer and security researcher.' } = Astro.props;
+const { title, description = site.description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -29,6 +31,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <style is:global>
 	:root {
 		--bg: #0b0d10;
+		--surface: #12161b;
+		--border: #232a33;
 		--fg: #e6e8eb;
 		--muted: #8b949e;
 		--accent: #3ddc97;

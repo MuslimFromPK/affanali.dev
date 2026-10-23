@@ -1,0 +1,47 @@
+# Sveltia CMS config. Every save is a commit to main, which redeploys the site.
+# Sign in with a fine-grained GitHub token (see README → "Editing the site").
+backend:
+  name: github
+  repo: MuslimFromPK/affanali.dev
+  branch: main
+  commit_messages:
+    update: 'content: update {{collection}} “{{slug}}”'
+
+site_url: https://affanali.dev
+display_url: https://affanali.dev
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: pages
+    label: Pages
+    files:
+      - name: home
+        label: Homepage
+        file: src/content/pages/home.md
+        fields:
+          - { name: title, label: Browser tab / SEO title, widget: string }
+          - { name: description, label: SEO description, widget: text }
+          - { name: knownAs, label: Name ↔ handle line, widget: string }
+          - { name: body, label: Intro, widget: markdown }
+          - { name: servicesHeading, label: '"What I do" heading', widget: string }
+          - name: services
+            label: What I do
+            widget: list
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Text, widget: text }
+
+  - name: settings
+    label: Site settings
+    files:
+      - name: site
+        label: Name, role & contact
+        file: src/data/site.json
+        fields:
+          - { name: name, label: Name, widget: string }
+          - { name: handle, label: Handle, widget: string }
+          - { name: role, label: Role, widget: string }
+          - { name: location, label: Location (keep to country only), widget: string }
+          - { name: email, label: Contact email, widget: string }
+          - { name: description, label: Default SEO description, widget: text }

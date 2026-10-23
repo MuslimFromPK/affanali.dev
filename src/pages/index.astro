@@ -1,31 +1,85 @@
 ---
+import { getEntry, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+
+const home = await getEntry('pages', 'home');
+if (!home) throw new Error('Missing src/content/pages/home.md');
+const { Content } = await render(home);
+const { title, description, knownAs, servicesHeading, services } = home.data;
 ---
 
-<BaseLayout title="Affan Ali (muslimfrompk) — AI Red Teamer & Security Researcher">
+<BaseLayout title={title} description={description}>
 	<main>
-		<p class="mono prompt">$ whoami</p>
-		<h1>Affan Ali <span class="handle">(muslimfrompk)</span></h1>
-		<p class="role">AI Red Teamer &amp; Security Researcher</p>
-		<p class="mono status"><span class="dot" aria-hidden="true"></span>Site under construction.</p>
+		<header>
+			<p class="mono prompt">$ whoami</p>
+			<h1>{site.name} <span class="handle">({site.handle})</span></h1>
+			<p class="role">{site.role}</p>
+		</header>
+
+		<section class="intro" aria-label="About">
+			<p class="known-as">{knownAs}</p>
+			<Content />
+		</section>
+
+		<section aria-labelledby="services-heading">
+			<h2 id="services-heading" class="mono"><span aria-hidden="true">## </span>{servicesHeading}</h2>
+			<ul class="services">
+				{services.map((s) => (
+					<li>
+						<h3>{s.title}</h3>
+						<p>{s.text}</p>
+					</li>
+				))}
+			</ul>
+		</section>
+
+		<footer class="mono">
+			<a href={`mailto:${site.email}`}>{site.email}</a>
+			<span class="muted">{site.location}</span>
+		</footer>
 	</main>
 </BaseLayout>
 
 <style>
 	main {
-		min-height: 100vh;
-		min-height: 100dvh;
-		max-width: 44rem;
+		max-width: 46rem;
 		margin: 0 auto;
-		padding: 2rem 1.25rem;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		padding: clamp(3rem, 10vh, 6rem) 1.25rem 3rem;
 	}
 	.prompt { color: var(--accent); margin: 0 0 0.5rem; }
 	h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.15; margin: 0; }
 	.handle { color: var(--muted); font-weight: 400; }
-	.role { font-size: 1.25rem; margin: 0.5rem 0 2rem; }
-	.status { color: var(--muted); margin: 0; display: flex; align-items: center; gap: 0.6rem; }
-	.dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: #f0b429; }
+	.role { font-size: 1.25rem; margin: 0.5rem 0 0; }
+	.intro { margin: 2.5rem 0 3rem; }
+	.known-as { font-weight: 600; }
+	.intro :global(p) { margin: 0 0 1rem; }
+	h2 { font-size: 1rem; font-weight: 600; color: var(--accent); margin: 0 0 1rem; }
+	.services {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+		gap: 1rem;
+	}
+	.services li {
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: 0.5rem;
+		padding: 1.1rem 1.25rem;
+	}
+	h3 { font-size: 1.05rem; margin: 0 0 0.4rem; }
+	.services p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+	footer {
+		margin-top: 3.5rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--border);
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 0.5rem;
+		font-size: 0.9rem;
+	}
+	.muted { color: var(--muted); }
 </style>
