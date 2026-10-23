@@ -79,4 +79,5 @@ collections:
           - { name: role, label: Role, widget: string }
           - { name: location, label: Location (keep to country only), widget: string }
           - { name: email, label: Contact email, widget: string }
+          - { name: linkedin, label: LinkedIn URL, widget: string }
           - { name: description, label: Default SEO description, widget: text }

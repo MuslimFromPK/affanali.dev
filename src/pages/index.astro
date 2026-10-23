@@ -34,10 +34,6 @@ const { title, description, knownAs, servicesHeading, services } = home.data;
 			</ul>
 		</section>
 
-		<footer class="mono">
-			<a href={`mailto:${site.email}`}>{site.email}</a>
-			<span class="muted">{site.location}</span>
-		</footer>
 	</main>
 </BaseLayout>
 
@@ -71,15 +67,4 @@ const { title, description, knownAs, servicesHeading, services } = home.data;
 	}
 	h3 { font-size: 1.05rem; margin: 0 0 0.4rem; }
 	.services p { margin: 0; color: var(--muted); font-size: 0.95rem; }
-	footer {
-		margin-top: 3.5rem;
-		padding-top: 1.25rem;
-		border-top: 1px solid var(--border);
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		gap: 0.5rem;
-		font-size: 0.9rem;
-	}
-	.muted { color: var(--muted); }
 </style>

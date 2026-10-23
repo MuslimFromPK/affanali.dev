@@ -1,4 +1,5 @@
 ---
+import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import site from '../data/site.json';
 
@@ -27,6 +28,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 	<body>
 		<SiteHeader />
 		<slot />
+		<SiteFooter />
 	</body>
 </html>
 
