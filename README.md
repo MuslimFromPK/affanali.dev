@@ -70,3 +70,4 @@ To make a new page editable, add its content file to `src/content/` and a matchi
 
 - Location stays at "Pakistan". No address, phone number, or schedule.
 - Claims must be factual. Anything unknown is left as a marked TODO.
+- Analytics: Simple Analytics only (cookie-free), loaded in `src/layouts/BaseLayout.astro`. Not loaded on `/admin`.

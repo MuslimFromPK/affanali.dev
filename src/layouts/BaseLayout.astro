@@ -24,6 +24,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<!-- 100% privacy-first analytics -->
+		<script is:inline async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 	</head>
 	<body>
 		<SiteHeader />
