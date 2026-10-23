@@ -59,7 +59,7 @@ To make a new page editable, add its content file to `src/content/` and a matchi
     https://patchstack.com/database/Wordpress/Plugin/sassy-social-share/vulnerability/wordpress-sassy-social-share-plugin-3-3-73-open-redirection-vulnerability
   - CVE-2025-32248: CSRF in SwiftXR (3D/AR/VR) Viewer WordPress plugin (<= 1.0.7), CVSS 5.4, credited via Patchstack.
     https://patchstack.com/database/Wordpress/Plugin/swiftxr-3darvr-viewer/vulnerability/wordpress-swiftxr-3d-ar-vr-viewer-plugin-1-0-7-cross-site-request-forgery-csrf-vulnerability
-- [~] **Phase 4: Blog.** _Done: posts, tags, reading time, Shiki highlighting, CMS editing. To do: RSS._ Content collection for Markdown/MDX write-ups with tags, RSS feed (`@astrojs/rss`), reading time,
+- [x] **Phase 4: Blog.** _Posts, tags, reading time, Shiki highlighting, RSS feed (`/rss.xml`), CMS editing. 3 Medium posts migrated._ Content collection for Markdown/MDX write-ups with tags, RSS feed (`@astrojs/rss`), reading time,
       syntax highlighting (Shiki, built in).
 - [ ] **Phase 5: Links/contact.** LinkedIn (linkedin.com/in/affanalicyber), GitHub (github.com/MuslimFromPK),
       HackerOne (hackerone.com/muslimfrompk), Medium (muslimfrompk.medium.com),
