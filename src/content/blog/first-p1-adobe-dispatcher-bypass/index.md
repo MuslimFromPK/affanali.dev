@@ -27,7 +27,8 @@ Adobe Dispatcher is like a Firewall in our words I think it gives us a 403 error
 
 I am beginner so I follow a methodology of and on.I just browsed the website and opened Wappalyzer to see what technologies are in use.It show CMS as first heading and Adobe Experience Manager as the technology.If I say truth I didn't saw other technologies and just jumped into Google search bar and searched for "AEM( shorthand for Adobe Experience Manager) Vulnerabilities" I saw a couple of medium articles on this.I often look for medium articles unlike others because they often very useful than others.I opened first article but it was of someone like me so I went back and opened second article of Clarkvoss it was a mystery box I would suggest you to bookmark it because it will help you when ever you faced with Adobe Experience Manager.
 
-[The CVE That Will Never Die!](https://clarkvoss.medium.com/the-cve-that-will-never-die-86149b450840)
+> **[The CVE That Will Never Die!](https://clarkvoss.medium.com/the-cve-that-will-never-die-86149b450840)**<br>
+> Article by Clarkvoss on Medium
 
 So I tried those techniques and one worked for me. I was able to access all of the websites internal sensitive files and directories by appending
 
