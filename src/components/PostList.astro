@@ -1,0 +1,35 @@
+---
+import type { Post } from '../lib/blog';
+import { formatDate, readingTime } from '../lib/blog';
+import TagList from './TagList.astro';
+
+interface Props {
+	posts: Post[];
+}
+
+const { posts } = Astro.props;
+---
+
+<ol class="posts">
+	{posts.map((post) => (
+		<li>
+			<p class="meta mono">
+				<time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+				<span aria-hidden="true">·</span>
+				<span>{readingTime(post)} min read</span>
+			</p>
+			<h2><a href={`/blog/${post.id}/`}>{post.data.title}</a></h2>
+			<p class="desc">{post.data.description}</p>
+			<TagList tags={post.data.tags} />
+		</li>
+	))}
+</ol>
+
+<style>
+	.posts { list-style: none; padding: 0; margin: 0; display: grid; gap: 2.25rem; }
+	.meta { margin: 0 0 0.3rem; color: var(--muted); font-size: 0.85rem; display: flex; gap: 0.5rem; }
+	h2 { font-size: 1.25rem; line-height: 1.35; margin: 0 0 0.4rem; }
+	h2 a { color: var(--fg); text-decoration: none; }
+	h2 a:hover { color: var(--accent); }
+	.desc { margin: 0 0 0.75rem; color: var(--muted); }
+</style>

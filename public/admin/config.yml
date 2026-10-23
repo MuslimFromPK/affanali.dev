@@ -13,6 +13,10 @@ display_url: https://affanali.dev
 media_folder: public/images
 public_folder: /images
 
+# Leave empty optional fields out of the file instead of writing `field: ''`.
+output:
+  omit_empty_optional_fields: true
+
 collections:
   - name: pages
     label: Pages
@@ -32,6 +36,36 @@ collections:
             fields:
               - { name: title, label: Title, widget: string }
               - { name: text, label: Text, widget: text }
+
+  - name: blog
+    label: Blog
+    label_singular: Post
+    folder: src/content/blog
+    path: '{{slug}}/index'
+    extension: md
+    format: frontmatter
+    create: true
+    # Images live next to each post's index.md.
+    media_folder: ''
+    public_folder: ''
+    slug: '{{fields.title}}'
+    sortable_fields: [pubDate, title]
+    view_filters:
+      - { label: Drafts, field: draft, pattern: true }
+      - { label: Migrated, field: tags, pattern: migrated }
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Summary (shown in lists & search results), widget: text }
+      - { name: pubDate, label: Published, widget: datetime, time_format: false, date_format: 'YYYY-MM-DD', format: 'YYYY-MM-DD' }
+      - { name: updatedDate, label: Updated, widget: datetime, time_format: false, date_format: 'YYYY-MM-DD', format: 'YYYY-MM-DD', required: false }
+      - { name: tags, label: Tags, widget: list, required: false }
+      - { name: cover, label: Cover image, widget: image, required: false }
+      - { name: coverAlt, label: Cover alt text, widget: string, required: false }
+      - { name: coverCaption, label: Cover caption / credit, widget: string, required: false }
+      - { name: coverCaptionUrl, label: Caption link, widget: string, required: false }
+      - { name: originalUrl, label: Originally published at (URL), widget: string, required: false }
+      - { name: draft, label: Draft (hidden from the live site), widget: boolean, default: false, required: false }
+      - { name: body, label: Post, widget: markdown }
 
   - name: settings
     label: Site settings

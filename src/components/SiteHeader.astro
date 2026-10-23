@@ -1,0 +1,34 @@
+---
+const path = Astro.url.pathname;
+const links = [
+	{ href: '/', label: 'home' },
+	{ href: '/blog/', label: 'blog' },
+];
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header class="site-header mono">
+	<a href="/" class="brand">affanali.dev</a>
+	<nav aria-label="Main">
+		{links.map((l) => (
+			<a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
+		))}
+	</nav>
+</header>
+
+<style>
+	.site-header {
+		max-width: 46rem;
+		margin: 0 auto;
+		padding: 1.25rem 1.25rem 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+		font-size: 0.9rem;
+	}
+	a { color: var(--muted); text-decoration: none; }
+	a:hover, a[aria-current='page'] { color: var(--accent); }
+	.brand { color: var(--fg); }
+	nav { display: flex; gap: 1.25rem; }
+</style>

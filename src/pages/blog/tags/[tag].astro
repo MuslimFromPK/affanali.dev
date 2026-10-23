@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostList from '../../../components/PostList.astro';
+import { getPosts, tagSlug } from '../../../lib/blog';
+
+export async function getStaticPaths() {
+	const posts = await getPosts();
+	const byTag = new Map<string, { name: string; posts: typeof posts }>();
+	for (const post of posts) {
+		for (const name of post.data.tags) {
+			const slug = tagSlug(name);
+			if (!byTag.has(slug)) byTag.set(slug, { name, posts: [] });
+			byTag.get(slug)!.posts.push(post);
+		}
+	}
+	return [...byTag].map(([tag, { name, posts }]) => ({ params: { tag }, props: { name, posts } }));
+}
+
+const { name, posts } = Astro.props;
+---
+
+<BaseLayout title={`#${name} · Blog · Affan Ali (muslimfrompk)`} description={`Posts tagged ${name}.`}>
+	<main class="page">
+		<p class="mono prompt">$ grep -l "#{name}" ~/blog/*</p>
+		<h1>#{name}</h1>
+		<p class="lead">{posts.length} post{posts.length === 1 ? '' : 's'} · <a href="/blog/">all posts</a></p>
+		<PostList posts={posts} />
+	</main>
+</BaseLayout>

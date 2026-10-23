@@ -5,4 +5,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
 	// Canonical URL, used for sitemap/RSS/canonical links in later phases.
 	site: 'https://affanali.dev',
+	markdown: {
+		shikiConfig: { theme: 'github-dark-dimmed' },
+	},
 });
