@@ -1,9 +1,10 @@
 # Sveltia CMS config. Every save is a commit to main, which redeploys the site.
-# Sign in with a fine-grained GitHub token (see README → "Editing the site").
+# Sign in with GitHub (via the Cloudflare Worker below) or a fine-grained token (see README).
 backend:
   name: github
   repo: MuslimFromPK/affanali.dev
   branch: main
+  base_url: https://sveltia-cms-auth.muslimfrompk.workers.dev
   commit_messages:
     update: 'content: update {{collection}} “{{slug}}”'
 

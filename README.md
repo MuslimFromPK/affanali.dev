@@ -32,8 +32,12 @@ astro.config.mjs               Astro config (site URL, integrations)
 Go to **https://affanali.dev/admin/**. Every save is a commit to `main`, and the deploy
 workflow republishes the site in about a minute.
 
-Sign in with **"Sign In Using Access Token"**. ("Sign In with GitHub" needs an OAuth server, which this site doesn't run.)
-Create the token at GitHub → Settings → Developer settings → **Fine-grained tokens**:
+**Sign In with GitHub** goes through a Cloudflare Worker running
+[sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth) at
+`https://sveltia-cms-auth.muslimfrompk.workers.dev` (`ALLOWED_DOMAINS=affanali.dev`), backed by a
+GitHub App that needs **Contents: Read and write** and is installed on this repo only.
+
+Alternatively, use **Sign In Using Access Token** with a GitHub → Settings → Developer settings → **Fine-grained token**:
 - Repository access: **Only select repositories** → `MuslimFromPK/affanali.dev`
 - Permissions: **Contents: Read and write** (Metadata: read is added automatically)
 - Pick an expiry; generate a new token when it runs out.
