@@ -11,7 +11,7 @@ services:
   - title: Bug bounty
     text: Hunting on HackerOne since May 2023, plus WordPress plugin research through Patchstack (CVE-2025-39404, CVE-2025-32248).
   - title: CTFs & community
-    text: 2nd place at Perfectroot CTF 2024. I help run the APIsec community and lead its "APIsec Avengers" CTF team.
+    text: 2nd place at Perfectroot CTF 2024. Previously I worked at APIsec and managed the community and lead several initiatives there.
 ---
 
 I'm an AI red teamer and security researcher from Pakistan. I break LLMs and AI agents through prompt injection, jailbreaks, tool abuse, and agent-to-agent privilege escalation, and I test web apps and APIs the old-fashioned way too.
