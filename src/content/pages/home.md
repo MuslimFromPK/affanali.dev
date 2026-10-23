@@ -16,4 +16,4 @@ services:
 
 I'm an AI red teamer and security researcher from Pakistan. I break LLMs and AI agents through prompt injection, jailbreaks, tool abuse, and agent-to-agent privilege escalation, and I test web apps and APIs the old-fashioned way too.
 
-I've been doing offensive security since 2023, starting with bug bounty on HackerOne, where my reports have been acknowledged by companies including Discord and Akamai. Through Patchstack I've disclosed two WordPress plugin vulnerabilities that were assigned CVEs. Since 2026 I've focused on AI security: I red team frontier models with Gray Swan AI, where I placed in the global Top 40 on the IPI Q1 leaderboard.
+I've been doing offensive security since 2023, starting with bug bounty on HackerOne, where my reports have been acknowledged by companies including Discord and Akamai. Through Patchstack I've disclosed two WordPress plugin vulnerabilities that were assigned CVEs. Since 2026 I've focused on AI security: I red team frontier models with Gray Swan AI and a few others.
