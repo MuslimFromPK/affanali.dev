@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogArticle from '../../components/BlogArticle.astro';
+
+// Unlisted review links. Any post (draft or not) that has a `previewToken`
+// is reachable at /preview/<token>/ . This is obscurity, not authentication:
+// anyone with the URL can view it. Kept out of the sitemap and marked noindex.
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts
+		.filter((post) => post.data.previewToken)
+		.map((post) => ({ params: { token: post.data.previewToken! }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { title, description } = post.data;
+---
+
+<BaseLayout title={`[Preview] ${title}`} description={description} noindex={true}>
+	<main class="page">
+		<p class="preview-banner mono">
+			Private preview — not published. Shared for review; please don't forward the link.
+		</p>
+		<BlogArticle post={post} />
+	</main>
+</BaseLayout>
+
+<style>
+	.preview-banner {
+		margin: 0 0 2rem;
+		padding: 0.7rem 1rem;
+		border: 1px dashed var(--accent);
+		border-radius: 0.5rem;
+		color: var(--muted);
+		font-size: 0.85rem;
+	}
+</style>

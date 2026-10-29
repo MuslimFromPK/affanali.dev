@@ -34,6 +34,8 @@ const blog = defineCollection({
 			// Set for posts republished from elsewhere (e.g. Medium).
 			originalUrl: optionalUrl,
 			draft: z.boolean().default(false),
+			// Unlisted review link: /preview/<token>/ . Obscurity only, not auth.
+			previewToken: z.string().optional(),
 		}),
 });
 
