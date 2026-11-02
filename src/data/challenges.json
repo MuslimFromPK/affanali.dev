@@ -5,9 +5,10 @@
       "description": "A chatbot is guarding a secret key and has been told never to share it. Talk it into leaking the flag. A gentle intro to prompt injection.",
       "category": "Prompt Injection",
       "difficulty": "Easy",
-      "status": "Coming soon",
+      "status": "Live",
       "flagFormat": "FLAG{...}",
-      "added": "2026-11-03"
+      "added": "2026-11-03",
+      "url": "https://wandering-scene-4c58.muslimfrompk.workers.dev/"
     }
   ]
 }
