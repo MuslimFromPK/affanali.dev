@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+	const challenges = await getCollection('challenges');
+	return challenges
+		.filter((c) => c.data.url && c.data.status !== 'Retired')
+		.map((c) => ({ params: { slug: c.id }, props: { c: c.data } }));
+}
+
+const { c } = Astro.props;
+---
+
+<BaseLayout title={`${c.title} · Challenges · Affan Ali`} description={c.description}>
+	<main class="page">
+		<p class="mono prompt"><a href="/challenges/">← challenges</a></p>
+		<h1>{c.title}</h1>
+		<p class="lead">
+			{c.description}
+			{c.flagFormat && <span class="mono flag"> · flag: {c.flagFormat}</span>}
+		</p>
+
+		<div class="frame">
+			<iframe src={c.url} title={c.title} loading="lazy"></iframe>
+		</div>
+		<p class="note mono">
+			Runs embedded here. <a href={c.url} rel="noopener" target="_blank">Open full screen ↗</a>
+		</p>
+	</main>
+</BaseLayout>
+
+<style>
+	.flag { color: var(--muted); }
+	.frame {
+		border: 1px solid var(--border);
+		border-radius: 0.5rem;
+		overflow: hidden;
+		background: var(--surface);
+	}
+	iframe { width: 100%; height: 78vh; min-height: 30rem; border: 0; display: block; }
+	.note { color: var(--muted); font-size: 0.85rem; margin-top: 0.75rem; }
+</style>

@@ -25,26 +25,29 @@ challenges.sort((a, b) => order[a.data.status] - order[b.data.status]);
 		{challenges.length === 0 && <p class="empty mono">No challenges live yet. Check back soon.</p>}
 
 		<ol class="cards">
-			{challenges.map(({ data: c }) => (
-				<li>
-					<article>
-						<p class="tags mono">
-							<span class="tag cat">{c.category}</span>
-							<span class={`tag diff diff-${c.difficulty.toLowerCase()}`}>{c.difficulty}</span>
-							<span class={`tag st st-${c.status.replace(/\s+/g, '-').toLowerCase()}`}>{c.status}</span>
-						</p>
-						<h2>{c.title}</h2>
-						<p class="desc">{c.description}</p>
-						<p class="foot mono">
-							{c.flagFormat && <span class="flag">flag: {c.flagFormat}</span>}
-							<span class="links">
-								{c.url && <a href={c.url} rel="noopener">Play ↗</a>}
-								{c.writeupUrl && <a href={c.writeupUrl} rel="noopener">Write-up ↗</a>}
-							</span>
-						</p>
-					</article>
-				</li>
-			))}
+			{challenges.map((entry) => {
+				const c = entry.data;
+				return (
+					<li>
+						<article>
+							<p class="tags mono">
+								<span class="tag cat">{c.category}</span>
+								<span class={`tag diff diff-${c.difficulty.toLowerCase()}`}>{c.difficulty}</span>
+								<span class={`tag st st-${c.status.replace(/\s+/g, '-').toLowerCase()}`}>{c.status}</span>
+							</p>
+							<h2>{c.title}</h2>
+							<p class="desc">{c.description}</p>
+							<p class="foot mono">
+								{c.flagFormat && <span class="flag">flag: {c.flagFormat}</span>}
+								<span class="links">
+									{c.url && c.status !== 'Retired' && <a href={`/challenges/${entry.id}/`}>Play →</a>}
+									{c.writeupUrl && <a href={c.writeupUrl} rel="noopener">Write-up ↗</a>}
+								</span>
+							</p>
+						</article>
+					</li>
+				);
+			})}
 		</ol>
 	</main>
 </BaseLayout>
