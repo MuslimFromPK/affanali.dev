@@ -96,6 +96,29 @@ collections:
               - { name: creditedVia, label: Credited via, widget: string, default: Patchstack }
               - { name: advisoryUrl, label: Official advisory URL, widget: string }
 
+  - name: challenges
+    label: Challenges
+    files:
+      - name: list
+        label: CTF challenges
+        file: src/data/challenges.json
+        fields:
+          - name: entries
+            label: Challenges (newest first)
+            label_singular: Challenge
+            widget: list
+            summary: '{{fields.title}} ({{fields.status}})'
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: description, label: Description, widget: text }
+              - { name: category, label: Category, widget: string, hint: 'e.g. Prompt Injection, Jailbreak, Agent/Tool Abuse' }
+              - { name: difficulty, label: Difficulty, widget: select, options: [Easy, Medium, Hard, Insane] }
+              - { name: status, label: Status, widget: select, options: [Live, Coming soon, Retired] }
+              - { name: url, label: Play URL, widget: string, required: false }
+              - { name: writeupUrl, label: Write-up URL, widget: string, required: false }
+              - { name: flagFormat, label: Flag format, widget: string, required: false, default: 'FLAG{...}' }
+              - { name: added, label: Added, widget: datetime, time_format: false, date_format: 'YYYY-MM-DD', format: 'YYYY-MM-DD' }
+
   - name: settings
     label: Site settings
     files:

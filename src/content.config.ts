@@ -61,4 +61,26 @@ const research = defineCollection({
 	}),
 });
 
-export const collections = { pages, blog, research };
+// AI-security CTF challenges, listed on /ctf.
+const challenges = defineCollection({
+	loader: file('src/data/challenges.json', {
+		parser: (text) =>
+			JSON.parse(text).entries.map((e: { title: string }) => ({
+				id: e.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+				...e,
+			})),
+	}),
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+		category: z.string(),
+		difficulty: z.enum(['Easy', 'Medium', 'Hard', 'Insane']),
+		status: z.enum(['Live', 'Coming soon', 'Retired']),
+		url: optionalUrl,
+		writeupUrl: optionalUrl,
+		flagFormat: z.string().optional(),
+		added: z.coerce.date(),
+	}),
+});
+
+export const collections = { pages, blog, research, challenges };

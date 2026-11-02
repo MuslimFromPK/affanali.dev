@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate } from '../../lib/blog';
+
+const challenges = (await getCollection('challenges')).sort(
+	(a, b) => b.data.added.valueOf() - a.data.added.valueOf(),
+);
+const order = { Live: 0, 'Coming soon': 1, Retired: 2 } as const;
+challenges.sort((a, b) => order[a.data.status] - order[b.data.status]);
+---
+
+<BaseLayout
+	title="Challenges · Affan Ali (muslimfrompk)"
+	description="Small AI-security CTF challenges by Affan Ali (muslimfrompk): prompt injection, jailbreaks, and agent/tool abuse."
+>
+	<main class="page">
+		<p class="mono prompt">$ ls ~/challenges</p>
+		<h1>Challenges</h1>
+		<p class="lead">
+			Small AI-security challenges I build when an idea strikes — prompt injection, jailbreaks,
+			agent and tool abuse. Break the model, grab the flag.
+		</p>
+
+		{challenges.length === 0 && <p class="empty mono">No challenges live yet. Check back soon.</p>}
+
+		<ol class="cards">
+			{challenges.map(({ data: c }) => (
+				<li>
+					<article>
+						<p class="tags mono">
+							<span class="tag cat">{c.category}</span>
+							<span class={`tag diff diff-${c.difficulty.toLowerCase()}`}>{c.difficulty}</span>
+							<span class={`tag st st-${c.status.replace(/\s+/g, '-').toLowerCase()}`}>{c.status}</span>
+						</p>
+						<h2>{c.title}</h2>
+						<p class="desc">{c.description}</p>
+						<p class="foot mono">
+							{c.flagFormat && <span class="flag">flag: {c.flagFormat}</span>}
+							<span class="links">
+								{c.url && <a href={c.url} rel="noopener">Play ↗</a>}
+								{c.writeupUrl && <a href={c.writeupUrl} rel="noopener">Write-up ↗</a>}
+							</span>
+						</p>
+					</article>
+				</li>
+			))}
+		</ol>
+	</main>
+</BaseLayout>
+
+<style>
+	.empty { color: var(--muted); }
+	.cards { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.25rem; }
+	article { background: var(--surface); border: 1px solid var(--border); border-radius: 0.5rem; padding: 1.25rem 1.4rem; }
+	.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 0.6rem; }
+	.tag { font-size: 0.75rem; padding: 0.12rem 0.55rem; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+	.tag.cat { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+	.diff-easy { color: #8bd5ff; }
+	.diff-medium { color: #f0b429; }
+	.diff-hard { color: #ff8a4c; }
+	.diff-insane { color: #ff5c5c; }
+	.st-live { color: #3ddc97; border-color: color-mix(in srgb, #3ddc97 45%, transparent); }
+	.st-coming-soon { color: #f0b429; }
+	.st-retired { color: var(--muted); }
+	h2 { font-size: 1.2rem; margin: 0 0 0.5rem; }
+	.desc { margin: 0 0 1rem; color: var(--muted); }
+	.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; align-items: center; font-size: 0.85rem; }
+	.flag { color: var(--muted); }
+	.links { display: flex; gap: 1.1rem; }
+</style>
